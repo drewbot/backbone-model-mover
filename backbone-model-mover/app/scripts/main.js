@@ -1,3 +1,11 @@
+///////////////////////////////////////////////////////////////////////////
+////////////////  DISCLAIMER //////////////////////////////////////////////
+/////////// I pulled Josh's code in order to study ////////////////////////
+/////////// and to work with some functional code  ////////////////////////
+/////////// My attempts were coming up short and   ////////////////////////
+/////////// I found his POV to be insightful //////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
 "use strict";
 // clicking the 'new' button will display fields to create a new list item
 $('.new-item').click(function () {
@@ -15,7 +23,7 @@ $('.save-item').click( function() {
 	if ($('.new-item-text').val() !== '' && $('input:checkbox:checked').length > 0 ){
 		// the saved value will be equal to whatever is entered in the text box
 		var text = $('.new-item-text').val();
-		// for each checkbox that is checked, add its value to an array named val
+		// for each checkbox that is checked, add it's value to an array named val
 		$('input:checkbox:checked').each(function(i){
 			return val[i] = $(this).val();
 		});
@@ -37,13 +45,13 @@ $('.save-item').click( function() {
 				Mover.collections.collectionThree.add(createItem);
 			}
 		});
-	// uncheck all check boxes, reset the text field to blank and hide the editing elements	
-	$('input:checkbox:checked').attr('checked', false)
-	$('.new-item-text').val('');
-	$('.save-item').hide();
-	$('.new-item-text').hide();
-	$('.create-new-item ul').hide();
-	$('.new-item').show();
+		// uncheck all check boxes, reset the text field to blank and hide the editing elements	
+		$('input:checkbox:checked').attr('checked', false)
+		$('.new-item-text').val('');
+		$('.save-item').hide();
+		$('.new-item-text').hide();
+		$('.create-new-item ul').hide();
+		$('.new-item').show();
 
 	}
 	else {

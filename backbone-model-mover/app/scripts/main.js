@@ -11,6 +11,7 @@ $('.new-item').click(function () {
 $('.save-item').click( function() {
 	var val = [];
 	// checks for a value in input field and makes sure a box is checked before saving
+	// .length will search the dom for the number of classes that match the selector 
 	if ($('.new-item-text').val() !== '' && $('input:checkbox:checked').length > 0 ){
 		// the saved value will be equal to whatever is entered in the text box
 		var text = $('.new-item-text').val();

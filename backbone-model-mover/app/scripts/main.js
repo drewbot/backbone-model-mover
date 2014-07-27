@@ -1,10 +1,3 @@
-///////////////////////////////////////////////////////////////////////////
-////////////////  DISCLAIMER //////////////////////////////////////////////
-/////////// I pulled Josh's code in order to study ////////////////////////
-/////////// and to work with some functional code  ////////////////////////
-/////////// My attempts were coming up short and   ////////////////////////
-/////////// I found his POV to be insightful //////////////////////////////
-///////////////////////////////////////////////////////////////////////////
 
 "use strict";
 // clicking the 'new' button will display fields to create a new list item
@@ -14,7 +7,6 @@ $('.new-item').click(function () {
 	$('.create-new-item ul').show();
 	$('.new-item').hide();
 });
-
 
 $('.save-item').click( function() {
 	var val = [];
@@ -31,17 +23,23 @@ $('.save-item').click( function() {
 		// collection should be added to
 		_.each(val, function (x) {
 			if (x === 'saveOne') {
+				//Create a new model instance, passing in JSON object for item with input value as text
 				var createItem = new Mover.Models.List({'item': text});
+				// add the new model instance to collection 1
 				Mover.collections.collectionOne.add(createItem);
 			}
 
 			else if (x === 'saveTwo') {
+				//Create a new model instance
 				var createItem = new Mover.Models.List({'item': text});
+				// add the new model instance to collection 1
 				Mover.collections.collectionTwo.add(createItem);
 			}
 
 			else if (x === 'saveThree') {
+				//Create a new model instance
 				var createItem = new Mover.Models.List({'item': text});
+				// add the new model instance to collection 1
 				Mover.collections.collectionThree.add(createItem);
 			}
 		});

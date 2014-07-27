@@ -1,7 +1,7 @@
 "use strict";
 
 // The first column view.
-// Each view shares a common template and model, but is called from a different collection/location in the DOM
+// Each view shares a common model, but is called from a different template/location in the DOM
 Mover.Views.ViewOne = Backbone.View.extend({
 	template: _.template($('.list-one-template').html()),
 	className: 'collection-one-item',
@@ -15,6 +15,7 @@ Mover.Views.ViewOne = Backbone.View.extend({
 	},
 
 	initialize: function () {
+		// listen to the model (constantly runs) if it hears a destroy remove the view
 		this.listenTo(this.model, 'destroy', this.remove);
 		$('.collection-one').append(this.el);
 		this.render();
@@ -26,7 +27,9 @@ Mover.Views.ViewOne = Backbone.View.extend({
 			this.model.save();
 		}
 	},
-
+	// while the view is listening above, 
+	// if it hears a change to the model or a new model is saved for this view,
+	// save the model attributes and pass them through this.$el.html method
 	render: function () {
 		var renderedTemplate = this.template(this.model.attributes);
 		this.$el.html(renderedTemplate);
@@ -187,17 +190,19 @@ Mover.Views.ViewThree = Backbone.View.extend({
 
 
 Mover.Views.AppView = Backbone.View.extend({
-	// create, fetch and listenTo all of the collections. 
+	// create, fetch and listenTo all of the collections instances
 	initialize: function () {
+		// Instantiate the collections
 		Mover.collections.collectionOne = new Mover.Collections.FirstCollection();
 		Mover.collections.collectionTwo = new Mover.Collections.SecondCollection();
 		Mover.collections.collectionThree = new Mover.Collections.ThirdCollection();
-
+		// fetch em
 		Mover.collections.collectionOne.fetch();
 		Mover.collections.collectionTwo.fetch();
 		Mover.collections.collectionThree.fetch();
-
+		// this App view will listen to each collection and add then pass it's model into a function
 		this.listenTo(Mover.collections.collectionOne, 'add', function (modelOne) {
+			// instantiate a new view and pass in the model instance
 			Mover.views.firstView = new Mover.Views.ViewOne({model: modelOne});
 		});
 		this.listenTo(Mover.collections.collectionTwo, 'add', function (modelTwo) {
